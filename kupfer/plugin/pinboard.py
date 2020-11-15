@@ -2,7 +2,7 @@ __kupfer_name__ = _("Pinboard")
 __kupfer_sources__ = ("PinboardBookmarkSource",)
 __kupfer_actions__ = ()
 __description__ = _("Manage and use bookmarks from Pinboard")
-__version__ = ""
+__version__ = "2020-11-15"
 __author__ = "Peter Stuifzand <peter@p83.nl>"
 
 from kupfer import plugin_support

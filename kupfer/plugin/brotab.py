@@ -1,6 +1,6 @@
 __kupfer_name__ = _("Brotab")
 __kupfer_sources__ = ("TabSource",)
-__kupfer_actions__ = ("TabActivate", "TabClose",)
+__kupfer_actions__ = ("TabActivate", "TabClose", "TabGetUrl",)
 __description__ = _("Firefox Tabs")
 __version__ = "2020.1"
 __author__ = "Peter Stuifzand <peter@p83.nl>"
@@ -8,6 +8,7 @@ __author__ = "Peter Stuifzand <peter@p83.nl>"
 import os
 
 from kupfer import utils, scheduler
+from kupfer.obj.objects import UrlLeaf
 from kupfer.objects import Source, Leaf, Action
 
 
@@ -131,6 +132,21 @@ class TabClose(Action):
 
     def activate(self, obj, iobj=None, ctx=None):
         utils.spawn_async(['brotab', 'close', obj.object])
+
+    def item_types(self):
+        yield TabLeaf
+
+
+class TabGetUrl(Action):
+
+    def __init__(self):
+        super().__init__(_("Get URL"))
+
+    def has_result(self):
+        return True
+
+    def activate(self, obj, iobj=None, ctx=None):
+        return UrlLeaf(obj.url, obj.title)
 
     def item_types(self):
         yield TabLeaf

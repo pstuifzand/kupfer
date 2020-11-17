@@ -46,6 +46,9 @@ class TabLeaf(Leaf):
     def get_description(self):
         return self.url
 
+    def get_icon_name(self):
+        return "web-browser"
+
 
 class ActiveTabLeaf(TabLeaf):
     qf_id = "active-tab"
@@ -119,6 +122,9 @@ class TabSource(Source):
         yield ActiveTabLeaf
         yield TabLeaf
 
+    def get_icon_name(self):
+        return "web-browser"
+
 
 class TabActivate(Action):
 
@@ -130,6 +136,9 @@ class TabActivate(Action):
 
     def item_types(self):
         yield TabLeaf
+
+    def get_icon_name(self):
+        return "go-jump"
 
 
 class TabClose(Action):
@@ -143,6 +152,8 @@ class TabClose(Action):
     def item_types(self):
         yield TabLeaf
 
+    def get_icon_name(self):
+        return "window-close"
 
 class TabGetUrl(Action):
 
